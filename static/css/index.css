@@ -50,6 +50,7 @@ main {
     max-width: 80%;
     width:fit-content;
     color: #000;
+    line-height: 1.2;
 }
 
 .histort-item-text {
@@ -67,6 +68,33 @@ main {
 .history-item.right {
     margin-left: auto;
     background-color: #88f;
+}
+
+/* for when the chatbot is typing: float to the left, and have a little animation */
+/* the animation works by toggling 3 different "contents" in the .typing.dots::after pseudo-element */
+.istyping {
+    margin-right: auto;
+}
+
+.istyping .dots::after {
+    content: "...";
+    display: inline-block;
+    animation: typing 1s infinite;
+}
+
+@keyframes typing {
+    0% {
+        content: "";
+    }
+    33% {
+        content: ".";
+    }
+    66% {
+        content: "..";
+    }
+    100% {
+        content: "...";
+    }
 }
 
 .chatbox input[type="textarea"] {

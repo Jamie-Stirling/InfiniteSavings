@@ -10,23 +10,8 @@
         
     </style>
     <title>WishBot</title>
-    <script defer>
-        let expandToggle = false;
-        function expand(event) {
-            // change plus to minus
-            if (!expandToggle){
-                document.querySelector('.chatbox label[for="more"] i.fa-plus').style.display = 'none';
-                document.querySelector('.chatbox label[for="more"] i.fa-minus').style.display = 'inline-block';
-                // show more box
-                document.querySelector('.more-box').style.display = null;
-            } else {
-                document.querySelector('.chatbox label[for="more"] i.fa-plus').style.display = 'inline-block';
-                document.querySelector('.chatbox label[for="more"] i.fa-minus').style.display = 'none';
-                // hide more box
-                document.querySelector('.more-box').style.display = 'none';
-            }
-            expandToggle = !expandToggle;
-        }
+    <script src="/static/js/messaging.js" defer>
+       
     </script>
 </head>
 <body>
@@ -35,32 +20,15 @@
     </header>
     <main>
         <div class="history">
-            <div class="history-item left">
-                <div class="history-item-text">
-                    Hi, I'm WishBot! I can help you save for your wishes.
-                </div>
-            </div>
-            <div class="history-item right">
-                <div class="history-item-text">
-                    Hi WishBot! I want to save for a new phone.
-                </div>
-            </div>
-            <div class="history-item left">
-                <div class="history-item-text">
-                    Sounds great! How much do you want to save?
-                </div>
-            </div>
-            <div class="history-item right">
-                <div class="history-item-text">
-                    90 pounds! Oh dear that will take a long time!
-                </div>
+            <div class="istyping" >
+                WishBot is typing<span class="dots"></span>
             </div>
         </div>
         <div class="chatbox">
             <input type="textarea" name="message" id="message" placeholder="Talk to WishBot...!">
             <label for="send">
                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                <input type="hidden" value="Send" id="send" hidden>
+                <input value="Send" id="send" onclick="sendChatMessage()" style="display:none;">
             </label>
             <label for="more">
                 <i class="fa fa-plus" aria-hidden="true"></i>
