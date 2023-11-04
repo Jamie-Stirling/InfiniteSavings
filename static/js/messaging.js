@@ -38,9 +38,9 @@ async function addMessage(text, isUser) {
     let historyItemText = document.createElement('div');
     historyItemText.classList.add('history-item-text');
     historyItemText.innerText = text;
+    historyItem.appendChild(historyItemText);
     // always add before the final "is typing" element
     history.insertBefore(historyItem, history.lastElementChild);
-    history.appendChild(historyItem);
     
 }
 
@@ -59,8 +59,8 @@ function sendChatMessage(event) {
 
     // disable send button while we await a response
     document.querySelector('#send').disabled = true;
-    // call api at /chatbot, post messages
-    // first get the message from the textarea
+    // also set the "is typing" element to visible
+    document.querySelector('.istyping').style.display = null;
     let data = {"messages": messages};
 
     fetch('/chatbot', {
@@ -71,13 +71,38 @@ function sendChatMessage(event) {
         body: JSON.stringify(data),
         })
         .then(response => response.json())
-        .then(data => {
+        .then(async data => {
+           
+            // run filtering step
+            let filtered = filterJSON(data.content);
+            let filteredMessage = filtered[0];
+            let json = filtered[1];
+
             console.log('Success:', data);
-            // add the message to the history
-            messages.push(data);
-            addMessage(data.content, false);
-            // enable send button
+            messages.push({"content": filteredMessage, "role": "assistant"});
+            addMessage(filteredMessage, false);
+
             document.querySelector('#send').disabled = false;
+            document.querySelector('.istyping').style.display = 'none';
+
+            if (json !== null) {
+                // send to backend
+                await fetch('/add_wish', json);
+                let rawHTML = `
+                    <div class="history-item-text">
+                        I've added <span class="item">${json.item}</span> to your wishlist.<br>
+                        It costs <span class="cost">${json.currency}${json.cost}</span>.<br>
+                        You've already saved <span class="already-saved">${json.currency}${json.already_saved}</span>.
+                    </div>`;
+                let history = document.querySelector('.history');
+                let historyItem = document.createElement('div');
+                historyItem.innerHTML = rawHTML;
+                historyItem.classList.add('history-item');
+                historyItem.classList.add('left');
+                history.insertBefore(historyItem, history.lastElementChild);
+                // add a corresponding message to the messages array
+                messages.push({"content": historyItem.text, "role": "assistant"});
+            }
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -86,3 +111,21 @@ function sendChatMessage(event) {
         }
     );
 }
+
+// function to filter out JSON from a string, returning the filtered message and the json separately
+// returns a tuple of (filtered message, json)
+function filterJSON(message) {
+    let json = null;
+    let filteredMessage = message;
+    // search for curly braces
+    let start = message.indexOf('{');
+    let end = message.indexOf('}');
+
+    if (start != -1 && end != -1) {
+        // there is a json object in the message
+        json = JSON.parse(message.substring(start, end + 1));
+        filteredMessage = message.substring(0, start);
+    }
+    return [filteredMessage, json];
+}
+

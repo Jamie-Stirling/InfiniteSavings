@@ -5,6 +5,8 @@ from language import normal_chat_response
 
 app = Flask(__name__)
 
+saving_goals = []
+
 # route index to wishbot/index.html
 @app.route("/")
 def index():
@@ -18,4 +20,12 @@ def chatbot():
 
     return normal_chat_response(messages)
 
-    
+# route to create new saving goal
+@app.route("/add_wish", methods=["POST"])
+def add_goal():
+    # get the messages from the request
+    goal_data = flask.request.get_json()
+
+    saving_goals.append(goal_data)
+
+    return "success", 200
