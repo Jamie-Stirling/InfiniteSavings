@@ -1,0 +1,106 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body > header > :only-child{
+    margin: 8px 0;
+}
+
+body > header {
+    flex: 0;
+    padding: 0;
+    height: 69px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.chatbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 0;
+    padding: 8px;
+}
+
+.history {
+    flex: 1;
+    overflow: scroll;
+}
+
+/* chat-like message history item, not always messages, sometimes other things like images and stuff:
+* rounded corners
+* fill 80% of the width
+* have a "left" or "right" class to align them left or right
+*/
+.history-item {
+    display: flex;
+    flex-direction: row;
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: 8px;
+    max-width: 80%;
+    width:fit-content;
+    color: #000;
+}
+
+.histort-item-text {
+    width: fit-content;
+}
+
+/* if dark theme */
+
+
+.history-item.left {
+    margin-right: auto;
+    background-color: aquamarine;
+}
+
+.history-item.right {
+    margin-left: auto;
+    background-color: #88f;
+}
+
+.chatbox input[type="textarea"] {
+    flex: 1;
+    margin: 0;
+}
+
+.chatbox label {
+    display: block;
+    flex: 0 0 36px;
+    margin-left: 4px;
+    padding: 4px; box-sizing: border-box; background-color: #88f; border-radius: 4px; cursor: pointer;
+    text-align: center;
+}
+
+.more-box {
+    /* grid with 4 columns */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 4px;
+    /* also gap at the edges */
+    padding: 8px;
+    
+}
+
+.more-item {
+    display: block;
+    /* square */
+    width: 52px;
+    height: 52px;
+    text-align: center;
+}
+
+.more-item-text {
+    display: block;
+    line-height: 1;
+}

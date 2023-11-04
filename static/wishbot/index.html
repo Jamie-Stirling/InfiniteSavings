@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/simple.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/css/index.css">
+    <style>
+        
+    </style>
+    <title>WishBot</title>
+    <script defer>
+        let expandToggle = false;
+        function expand(event) {
+            // change plus to minus
+            if (!expandToggle){
+                document.querySelector('.chatbox label[for="more"] i.fa-plus').style.display = 'none';
+                document.querySelector('.chatbox label[for="more"] i.fa-minus').style.display = 'inline-block';
+                // show more box
+                document.querySelector('.more-box').style.display = null;
+            } else {
+                document.querySelector('.chatbox label[for="more"] i.fa-plus').style.display = 'inline-block';
+                document.querySelector('.chatbox label[for="more"] i.fa-minus').style.display = 'none';
+                // hide more box
+                document.querySelector('.more-box').style.display = 'none';
+            }
+            expandToggle = !expandToggle;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>🌠 WishBot</h1>
+    </header>
+    <main>
+        <div class="history">
+            <div class="history-item left">
+                <div class="history-item-text">
+                    Hi, I'm WishBot! I can help you save for your wishes.
+                </div>
+            </div>
+            <div class="history-item right">
+                <div class="history-item-text">
+                    Hi WishBot! I want to save for a new phone.
+                </div>
+            </div>
+            <div class="history-item left">
+                <div class="history-item-text">
+                    Sounds great! How much do you want to save?
+                </div>
+            </div>
+            <div class="history-item right">
+                <div class="history-item-text">
+                    90 pounds! Oh dear that will take a long time!
+                </div>
+            </div>
+        </div>
+        <div class="chatbox">
+            <input type="textarea" name="message" id="message" placeholder="Talk to WishBot...!">
+            <label for="send">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                <input type="hidden" value="Send" id="send" hidden>
+            </label>
+            <label for="more">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <i class="fa fa-minus" aria-hidden="true" style="display:none"></i>
+                <input value="More" id="more" style="display:none" onclick="expand()">
+            </label>
+        </div>
+        <div class="more-box" style="display:none">
+            <div class="more-item">
+                <div class="more-item-icon">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </div>
+                <div class="more-item-text">add money</div>
+            </div>
+
+            <div class="more-item">
+                <div class="more-item-icon">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+                <div class="more-item-text">new wish</div>
+            </div>
+
+            <div class="more-item">
+                <div class="more-item-icon">
+                    <i class="fa fa-question" aria-hidden="true"></i>
+                </div>
+                <div class="more-item-text">fun fact</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
