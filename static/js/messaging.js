@@ -135,3 +135,18 @@ function filterJSON(message) {
     return [filteredMessage, json];
 }
 
+
+function funFact() {
+    // send a message on behalf of the user asking for a fun fact via the usual chatbot api
+    
+    
+    // type "Tell me a fun fact about saving money" into the text area
+    let userText = "Tell me a fun fact about saving money!";
+
+    textArea = document.querySelector('#message');
+    textArea.value = userText;
+
+    // send the message
+    sendChatMessage(null);
+    
+}
