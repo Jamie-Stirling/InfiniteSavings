@@ -96,7 +96,7 @@ function sendChatMessage(event) {
                 });
                 let rawHTML = `
                     <div class="history-item-text">
-                        I've added <span class="item">${json.item}</span> to your wishlist.<br>
+                        I've added <span class="item"><em>${json.item}</em></span> to your <a href="/wishlist">wishlist</a>.<br>
                         It costs <span class="cost">${json.currency}${json.cost}</span>.<br>
                         You've already saved <span class="already-saved">${json.currency}${json.already_saved}</span>.
                     </div>`;

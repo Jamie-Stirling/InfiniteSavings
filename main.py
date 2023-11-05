@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 saving_goals = [
     {
-        "name": "Bike",
+        "item": "Bike",
         "cost": 80,
         "already_saved": 0,
         "currency": "£"
@@ -34,8 +34,18 @@ def wishlist():
 # route to create new saving goal
 @app.route("/add_wish", methods=["POST"])
 def add_goal():
+    if flask.request.content_type != "application/json":
+        return "error", 400
+    
     # get the messages from the request
     goal_data = flask.request.get_json()
+
+    if goal_data.currency == "pounds" or goal_data.currency == "pound":
+        goal_data.currency = "£"
+    elif goal_data.currency == "dollars" or goal_data.currency == "dollar":
+        goal_data.currency = "$"
+    elif goal_data.currency == "euros" or goal_data.currency == "euro":
+        goal_data.currency = "€"
 
     saving_goals.append(goal_data)
 

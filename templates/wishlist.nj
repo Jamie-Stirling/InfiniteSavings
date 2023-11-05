@@ -45,7 +45,7 @@
     <main style="display:block">
         {% for goal in saving_goals %}
         <div class="wish-item">
-            <div class="wish-item-name"><i class="fa fa-star" aria-hidden="true"></i> {{goal.name}}</div>
+            <div class="wish-item-name"><i class="fa fa-star" aria-hidden="true"></i> {{goal.item}}</div>
             <div class="wish-progress-bar">
                 <div class="wish-progress-bar-fill" style="width: 50%;">
 
@@ -58,6 +58,7 @@
             </div>
         </div>
         {% endfor %}
+        <p>Back to <a href="/">WishBot</a>.</p>
     </main>
 </body>
 </html>

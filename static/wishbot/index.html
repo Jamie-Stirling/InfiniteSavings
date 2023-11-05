@@ -11,7 +11,16 @@
     </style>
     <title>WishBot</title>
     <script src="/static/js/messaging.js" defer>
-       
+     
+    </script>
+    <script defer>
+        function handleKeyPress(event) {
+            // submit on enter
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                sendChatMessage();
+            }
+       }
     </script>
 </head>
 <body>
@@ -25,7 +34,7 @@
             </div>
         </div>
         <div class="chatbox">
-            <input type="textarea" name="message" id="message" placeholder="Talk to WishBot...!">
+            <input type="textarea" name="message" id="message" placeholder="Talk to WishBot...!" onkeyup="handleKeyPress(event)">
             <label for="send">
                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
                 <input value="Send" id="send" onclick="sendChatMessage()" style="display:none;">
