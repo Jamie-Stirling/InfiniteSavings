@@ -29,7 +29,7 @@ def chatbot():
 
 @app.route("/wishlist", methods=["GET"])
 def wishlist():
-    return flask.render_template("wishlist.nj", saving_goals=saving_goals)
+    return flask.render_template("wishlist.jinja", saving_goals=saving_goals)
 
 # route to create new saving goal
 @app.route("/add_wish", methods=["POST"])

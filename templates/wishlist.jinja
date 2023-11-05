@@ -25,6 +25,8 @@
             overflow: hidden;
             margin-top: 0.5rem;
         }
+
+        
         
         .wish-progress-labels {
             display: flex;
@@ -44,10 +46,11 @@
     </header>
     <main style="display:block">
         {% for goal in saving_goals %}
+        {% set percentage = 100 * goal.already_saved / goal.cost%}
         <div class="wish-item">
             <div class="wish-item-name"><i class="fa fa-star" aria-hidden="true"></i> {{goal.item}}</div>
             <div class="wish-progress-bar">
-                <div class="wish-progress-bar-fill" style="width: 50%;">
+                <div class="wish-progress-bar-fill" style="width: percentage%;">
 
                 </div>
             </div>

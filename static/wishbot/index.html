@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/static/css/index.css">
     <style>
-        
+        .more-item {
+            cursor: pointer;
+        }
     </style>
     <title>WishBot</title>
     <script src="/static/js/messaging.js" defer>
@@ -46,18 +48,25 @@
             </label>
         </div>
         <div class="more-box" style="display:none">
-            <div class="more-item">
+            <!--<div class="more-item">
                 <div class="more-item-icon">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                 </div>
                 <div class="more-item-text">add money</div>
-            </div>
+            </div>-->
 
             <div class="more-item">
                 <div class="more-item-icon">
-                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
                 </div>
                 <div class="more-item-text">new wish</div>
+            </div>
+
+            <div class="more-item" onclick="window.location.href='/wishlist'">
+                <div class="more-item-icon">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+                <div class="more-item-text">wish list</div>
             </div>
 
             <div class="more-item">
