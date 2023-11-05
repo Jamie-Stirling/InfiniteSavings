@@ -27,7 +27,7 @@ When it's clear the user has a specific item in mind, you should ask them how mu
 
 They may have already saved up some money, so be sure to ask that first unless they've already told you.
 
-Once you know how much they already have and need to save up, output a single line: {{"item":<item>, "cost":<cost>, "already_saved":<already saved>, "currency":<currency>}} in JSON.
+Once you know how much they already have and need to save up, output a single line: {{"item":<item>, "cost":<cost>, "already_saved":<already saved>, "currency":<currency>}} in JSON with no other context.
                  """}] + messages
     print(messages)
     response = openai.ChatCompletion.create(

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/simple.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/css/index.css">
+    <style>
+        main {
+            width: 100%;
+            max-width: 600px;
+        }
+        .wish-item {
+            display: block;
+            width:100%;
+            font-size: 1.5rem;
+        }
+
+        .wish-progress-bar {
+            width: 100%;
+            height: 1rem;
+            background-color: #eee;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .wish-progress-labels {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+    </style>
+    <title>WishBot</title>
+    <script defer>
+       
+    </script>
+</head>
+<body>
+    <header>
+        <h1>🌠 WishList</h1>
+    </header>
+    <main style="display:block">
+        {% for goal in saving_goals %}
+        <div class="wish-item">
+            <div class="wish-item-name"><i class="fa fa-star" aria-hidden="true"></i> {{goal.name}}</div>
+            <div class="wish-progress-bar">
+                <div class="wish-progress-bar-fill" style="width: 50%;">
+
+                </div>
+            </div>
+            <div class="wish-progress-labels">
+                <div class="wish-item-zero"></div>
+                <!--<div class="wish-item-saved">£5</div>-->
+                <div class="wish-item-goal">{{goal.currency}}{{goal.cost}}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+</body>
+</html>

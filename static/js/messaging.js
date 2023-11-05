@@ -87,7 +87,13 @@ function sendChatMessage(event) {
 
             if (json !== null) {
                 // send to backend
-                await fetch('/add_wish', json);
+                await fetch('/add_wish', {
+                    "method": "POST",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": JSON.stringify(json)
+                });
                 let rawHTML = `
                     <div class="history-item-text">
                         I've added <span class="item">${json.item}</span> to your wishlist.<br>
